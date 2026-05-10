@@ -95,6 +95,13 @@ h1 {
   color: #000;
 }
 
+.edit-btn {
+  color: #ffb74d; /* Nice warm orange/yellow */
+}
+.edit-btn:hover {
+  color: #ff9800;
+}
+
 /* Task List */
 #task-list {
   list-style: none;
