@@ -53,6 +53,19 @@ function deleteTask(id) {
   renderTasks();
 }
 
+// edit a task
+function editTask(id) {
+  const taskToEdit = tasks.find((task) => task.id === id);
+
+  const newText = prompt("Edit your task:", taskToEdit.text);
+
+  if (newText !== null && newText.trim() !== "") {
+    taskToEdit.text = newText.trim();
+    saveTasks();
+    renderTasks();
+  }
+}
+
 // save to localStorage
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
@@ -81,10 +94,10 @@ function renderTasks() {
         </p>
       </div>
     `;
-    return; // This stops the rest of the function from running
+    return;
   }
 
-  // If it's NOT empty, loop through our array and create HTML for each task
+  // if not empty, then loop through array and create html for each
   tasks.forEach((task) => {
     const li = document.createElement("li");
     li.className = `task-item ${task.completed ? "completed" : ""}`;
@@ -94,6 +107,9 @@ function renderTasks() {
       <div class="action-btns">
         <button class="check-btn" onclick="toggleComplete(${task.id})">
           <i class="fa-solid fa-check"></i>
+        </button>
+        <button class="edit-btn" onclick="editTask(${task.id})">
+          <i class="fa-solid fa-pen"></i>
         </button>
         <button class="delete-btn" onclick="deleteTask(${task.id})">
           <i class="fa-solid fa-trash"></i>
